@@ -20,19 +20,21 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = userService.getAllUsers();
+
         return ResponseEntity.ok(users);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         return userService.getUserById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping("/user/register")
-    public ResponseEntity<User> createUser(@RequestBody User user)
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userService.createUser(user);
 
-       return ResponseEntity
-               .status(HttpStatus.CREATED)
-               .body(savedUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    }
 }

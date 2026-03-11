@@ -1,21 +1,26 @@
 package com.example.store.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Entity
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class User {
-    private String name;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
+    private String name;
+
     private String email;
     private String password;
 
+    private String role;
 
 }
